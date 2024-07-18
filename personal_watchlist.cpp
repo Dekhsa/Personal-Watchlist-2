@@ -86,72 +86,109 @@ void addLastWL(string title, string genre, string rating, string year) {
 
 // ===== Sorting Watchlist =====
 void sortWL(int i) {
-    Movie* current = NULL, * index = NULL;
-    string temp;
+    Movie * index = NULL;
+    curr = NULL;
+    string TTemp,GTemp,YTemp,RTemp;
     //Check whether list is empty  
     if (WLHead == NULL) {
         return;
     }
     else {
         if(i == 1){// ===== sorting title
-            //Current will point to head  
-            for (current = WLHead; current->next != NULL; current = current->next) {
-                //Index will point to node next to current  
-                for (index = current->next; index != NULL; index = index->next) {
-                    //If current's Title is greater than index's Title, swap the data of current and index  
-                    if (current->title > index->title) {
-                        temp = current->title;
-                        current->title = index->title;
-                        index->title = temp;
+            //curr will point to head  
+            for (curr = WLHead; curr->next != NULL; curr = curr->next) {
+                //Index will point to node next to curr  
+                for (index = curr->next; index != NULL; index = index->next) {
+                    //If curr's Title is greater than index's Title, swap the data of curr and index  
+                    if (curr->title > index->title) {
+                        TTemp = curr->title;
+                        YTemp = curr->year;
+                        RTemp = curr->rating;
+                        GTemp = curr->genre;
+                        curr->title = index->title;
+                        curr->year = index->year;
+                        curr->rating = index->rating;
+                        curr->genre = index->genre;
+                        index->title = TTemp;
+                        index->year = YTemp;
+                        index->rating = RTemp;
+                        index->genre = GTemp;
                     }
                 }
             }
         }
         else if (i == 2) { // ===== sorting Genre
             //Current will point to head  
-            for (current = WLHead; current->next != NULL; current = current->next) {
-                //Index will point to node next to current  
-                for (index = current->next; index != NULL; index = index->next) {
-                    //If current's genre is greater than index's genre, swap the data of current and index  
-                    if (current->genre > index->genre) {
-                        temp = current->genre;
-                        current->genre = index->genre;
-                        index->genre = temp;
+            //curr will point to head  
+            for (curr = WLHead; curr->next != NULL; curr = curr->next) {
+                //Index will point to node next to curr  
+                for (index = curr->next; index != NULL; index = index->next) {
+                    //If curr's Title is greater than index's Title, swap the data of curr and index  
+                    if (curr->genre > index->genre) {
+                        TTemp = curr->title;
+                        YTemp = curr->year;
+                        RTemp = curr->rating;
+                        GTemp = curr->genre;
+                        curr->title = index->title;
+                        curr->year = index->year;
+                        curr->rating = index->rating;
+                        curr->genre = index->genre;
+                        index->title = TTemp;
+                        index->year = YTemp;
+                        index->rating = RTemp;
+                        index->genre = GTemp;
                     }
                 }
             }
         }
         else if (i == 3) { // ===== sorting Year
-            //Current will point to head  
-            for (current = WLHead; current->next != NULL; current = current->next) {
-                //Index will point to node next to current  
-                for (index = current->next; index != NULL; index = index->next) {
-                    //If current's year is greater than index's year, swap the data of current and index  
-                    if (current->year > index->year) {
-                        temp = current->year;
-                        current->year = index->year;
-                        index->year = temp;
+            //curr will point to head  
+            for (curr = WLHead; curr->next != NULL; curr = curr->next) {
+                //Index will point to node next to curr  
+                for (index = curr->next; index != NULL; index = index->next) {
+                    //If curr's Title is greater than index's Title, swap the data of curr and index  
+                    if (curr->year > index->year) {
+                        TTemp = curr->title;
+                        YTemp = curr->year;
+                        RTemp = curr->rating;
+                        GTemp = curr->genre;
+                        curr->title = index->title;
+                        curr->year = index->year;
+                        curr->rating = index->rating;
+                        curr->genre = index->genre;
+                        index->title = TTemp;
+                        index->year = YTemp;
+                        index->rating = RTemp;
+                        index->genre = GTemp;
                     }
                 }
             }
         }
         else if (i == 4) { // ===== sorting rating
-            //Current will point to head  
-            for (current = WLHead; current->next != NULL; current = current->next) {
-                //Index will point to node next to current  
-                for (index = current->next; index != NULL; index = index->next) {
-                    //If current's rating is greater than index's rating, swap the rating of current and index  
-                    if (current->rating > index->rating) {
-                        temp = current->rating;
-                        current->rating = index->rating;
-                        index->rating = temp;
+            //curr will point to head  
+            for (curr = WLHead; curr->next != NULL; curr = curr->next) {
+                //Index will point to node next to curr  
+                for (index = curr->next; index != NULL; index = index->next) {
+                    //If curr's Title is greater than index's Title, swap the data of curr and index  
+                    if (curr->rating > index->rating) {
+                        TTemp = curr->title;
+                        YTemp = curr->year;
+                        RTemp = curr->rating;
+                        GTemp = curr->genre;
+                        curr->title = index->title;
+                        curr->year = index->year;
+                        curr->rating = index->rating;
+                        curr->genre = index->genre;
+                        index->title = TTemp;
+                        index->year = YTemp;
+                        index->rating = RTemp;
+                        index->genre = GTemp;
                     }
                 }
             }
         }
     }
 }
-
 // Global Variable 
 int WLPage = 1, WLTotalPage = round(countWL()/8)+1, WLElement = 0, HPage = 1, HTotalPage = 1, HElement = 0;
 
@@ -363,6 +400,10 @@ int main()
             goto menuChoose;
             break;
         case '5':// ===== Sort Movies
+		if (WLHead == WLTail || WLHead == NULL) {
+			 cout << "Watchlist Empty or Less Movies!" << endl;
+			goto menuChoose;
+		}
             cout << "Sort Movie By :" << endl;
             cout << "[T]title|[G]genre|[Y]year|[R]rating" << endl;
             cout << "Choose     : "; cin >> sortMenu;
